@@ -3,20 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oficio de solicitud - CU Valle de Chalco</title>
+  <title>Oficio de Solicitud - CU Valle de Chalco</title>
   <style>
     :root {
       --verde-institucional: #1B5E20;
       --verde-oscuro: #124116;
-      --dorado-acento: #9E8A38;
       --fondo-pagina: #F4F6F5;
       --borde-input: #CBD5E1;
       --texto-principal: #1E293B;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -27,7 +24,6 @@
       line-height: 1.5;
     }
 
-    /* --- ESTILOS DE PANTALLA (FORMULARIO) --- */
     .form-wrapper {
       max-width: 680px;
       margin: 15px auto;
@@ -58,9 +54,7 @@
       color: #64748B;
     }
 
-    .form-body {
-      padding: 24px 30px 30px;
-    }
+    .form-body { padding: 24px 30px 30px; }
 
     .form-grid {
       display: grid;
@@ -68,9 +62,7 @@
       gap: 16px;
     }
 
-    .full-width {
-      grid-column: 1 / -1;
-    }
+    .full-width { grid-column: 1 / -1; }
 
     .form-group {
       display: flex;
@@ -91,7 +83,6 @@
       border-radius: 8px;
       font-size: 0.95rem;
       font-family: inherit;
-      transition: border-color 0.2s, box-shadow 0.2s;
       background-color: #FAFAFA;
     }
 
@@ -118,16 +109,9 @@
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background-color 0.2s, transform 0.1s;
     }
 
-    .btn-submit:hover {
-      background-color: var(--verde-oscuro);
-    }
-
-    .btn-submit:active {
-      transform: scale(0.99);
-    }
+    .btn-submit:hover { background-color: var(--verde-oscuro); }
 
     .nota-ayuda {
       margin-top: 12px;
@@ -136,19 +120,14 @@
       text-align: center;
     }
 
-    /* Responsivo para celulares */
     @media (max-width: 600px) {
       body { padding: 10px; }
       .form-body { padding: 20px; }
       .form-grid { grid-template-columns: 1fr; }
     }
 
-    /* Ocultar vista de oficio en pantalla */
-    .document-preview {
-      display: none;
-    }
+    .document-preview { display: none; }
 
-    /* --- ESTILOS DE IMPRESIÓN (OFICIO FORMAL) --- */
     @media print {
       @page {
         size: letter;
@@ -163,9 +142,7 @@
         font-family: Arial, Helvetica, sans-serif;
       }
 
-      .form-wrapper {
-        display: none !important;
-      }
+      .form-wrapper { display: none !important; }
 
       .document-preview {
         display: block !important;
@@ -203,9 +180,7 @@
         white-space: pre-wrap;
       }
 
-      .doc-despedida {
-        margin-bottom: 70px;
-      }
+      .doc-despedida { margin-bottom: 70px; }
 
       .doc-firma {
         text-align: center;
@@ -228,15 +203,12 @@
         text-transform: uppercase;
       }
 
-      .doc-firma-leyenda {
-        font-size: 10.5pt;
-      }
+      .doc-firma-leyenda { font-size: 10.5pt; }
     }
   </style>
 </head>
 <body>
 
-  <!-- VISTA EN PANTALLA (FORMULARIO) -->
   <div class="form-wrapper">
     <div class="form-header">
       <h1>Oficio de Solicitud</h1>
@@ -252,3 +224,121 @@
 
         <div class="form-group">
           <label for="cuenta">Número de cuenta *</label>
+          <input type="text" id="cuenta" placeholder="Ej. 2124567" required>
+        </div>
+
+        <div class="form-group">
+          <label for="licenciatura">Licenciatura *</label>
+          <select id="licenciatura" required>
+            <option value="" disabled selected>Selecciona tu licenciatura</option>
+            <option value="Diseño Industrial">Diseño Industrial</option>
+            <option value="Contaduría">Contaduría</option>
+            <option value="Derecho">Derecho</option>
+            <option value="Enfermería">Enfermería</option>
+            <option value="Informática Administrativa">Informática Administrativa</option>
+            <option value="Ingeniería en Computación">Ingeniería en Computación</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="semestre">Semestre *</label>
+          <select id="semestre" required>
+            <option value="" disabled selected>Selecciona</option>
+            <option value="1°">1°</option>
+            <option value="2°">2°</option>
+            <option value="3°">3°</option>
+            <option value="4°">4°</option>
+            <option value="5°">5°</option>
+            <option value="6°">6°</option>
+            <option value="7°">7°</option>
+            <option value="8°">8°</option>
+            <option value="9°">9°</option>
+            <option value="10°">10°</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="grupo">Grupo *</label>
+          <input type="text" id="grupo" placeholder="Ej. D1 / A" required>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="turno">Turno *</label>
+          <select id="turno" required>
+            <option value="" disabled selected>Selecciona tu turno</option>
+            <option value="Matutino">Matutino</option>
+            <option value="Vespertino">Vespertino</option>
+            <option value="Mixto">Mixto</option>
+          </select>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="tramite">Trámite que requiere (Exponer de forma clara) *</label>
+          <textarea id="tramite" placeholder="Describe detalladamente el trámite o petición que solicitas..." required></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit">Generar PDF / Imprimir Oficio</button>
+      <p class="nota-ayuda">Al pulsar el botón se abrirá la vista de impresión. Elige "Guardar como PDF" o selecciona tu impresora.</p>
+    </form>
+  </div>
+
+  <div class="document-preview">
+    <div class="doc-titulo">OFICIO DE SOLICITUD</div>
+    <div class="doc-fecha" id="fecha-oficio"></div>
+
+    <div class="doc-destinatario">
+      M. en S.F.C ELIA CHAMORRO VAZQUEZ<br>
+      DIRECTORA DEL CENTRO UNIVERSITARIO VALLE DE CHALCO<br>
+      P R E S E N T E
+    </div>
+
+    <div class="doc-cuerpo">
+      El que suscribe, <strong id="out-nombre"></strong>, con No. de cuenta <strong id="out-cuenta"></strong>, 
+      de la Licenciatura en <strong id="out-lic"></strong>, semestre <strong id="out-sem"></strong>, 
+      grupo <strong id="out-grupo"></strong>, turno <strong id="out-turno"></strong>.
+    </div>
+
+    <div class="doc-solicitud"><strong>Solicito:</strong> <span id="out-tramite"></span></div>
+
+    <div class="doc-despedida">
+      Sin otro particular, agradezco de antemano su fina atención.
+    </div>
+
+    <div class="doc-firma">
+      <div class="doc-firma-atentamente">ATENTAMENTE</div>
+      <div class="doc-firma-linea"></div>
+      <div class="doc-firma-nombre" id="out-firma"></div>
+      <div class="doc-firma-leyenda">Nombre y Firma del Alumno</div>
+    </div>
+  </div>
+
+  <script>
+    function generarOficio(event) {
+      event.preventDefault();
+
+      const hoy = new Date();
+      const meses = [
+        "enero", "febrero", "marzo", "abril", "mayo", "junio",
+        "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+      ];
+
+      document.getElementById('fecha-oficio').innerText =
+        `Valle de Chalco Solidaridad, Edo. de México, a ${hoy.getDate()} de ${meses[hoy.getMonth()]} de ${hoy.getFullYear()}`;
+
+      const nombre = document.getElementById('nombre').value.trim();
+      document.getElementById('out-nombre').innerText = nombre;
+      document.getElementById('out-firma').innerText = nombre;
+      document.getElementById('out-cuenta').innerText = document.getElementById('cuenta').value.trim();
+      document.getElementById('out-lic').innerText = document.getElementById('licenciatura').value;
+      document.getElementById('out-sem').innerText = document.getElementById('semestre').value;
+      document.getElementById('out-grupo').innerText = document.getElementById('grupo').value.trim().toUpperCase();
+      document.getElementById('out-turno').innerText = document.getElementById('turno').value;
+      document.getElementById('out-tramite').innerText = document.getElementById('tramite').value.trim();
+
+      window.print();
+    }
+  </script>
+
+</body>
+</html>
