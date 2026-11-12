@@ -2,91 +2,253 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Oficio de Solicitud</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oficio de Solicitud - CU Valle de Chalco</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 40px; }
-    .form-container { max-width: 650px; margin: auto; }
-    .document-preview { display: none; }
+    :root {
+      --verde-institucional: #1B5E20;
+      --verde-oscuro: #124116;
+      --dorado-acento: #9E8A38;
+      --fondo-pagina: #F4F6F5;
+      --borde-input: #CBD5E1;
+      --texto-principal: #1E293B;
+    }
 
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--fondo-pagina);
+      color: var(--texto-principal);
+      margin: 0;
+      padding: 20px;
+      line-height: 1.5;
+    }
+
+    /* --- ESTILOS DE PANTALLA (FORMULARIO) --- */
+    .form-wrapper {
+      max-width: 680px;
+      margin: 15px auto;
+      background: #FFFFFF;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      border-top: 6px solid var(--verde-institucional);
+    }
+
+    .form-header {
+      background-color: #FFFFFF;
+      padding: 24px 30px 16px;
+      border-bottom: 2px solid #F1F5F9;
+      text-align: center;
+    }
+
+    .form-header h1 {
+      margin: 0;
+      font-size: 1.4rem;
+      color: var(--verde-institucional);
+      font-weight: 700;
+    }
+
+    .form-header p {
+      margin: 6px 0 0;
+      font-size: 0.9rem;
+      color: #64748B;
+    }
+
+    .form-body {
+      padding: 24px 30px 30px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #334155;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid var(--borde-input);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background-color: #FAFAFA;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--verde-institucional);
+      background-color: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.12);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .btn-submit {
+      margin-top: 22px;
+      width: 100%;
+      padding: 14px;
+      background-color: var(--verde-institucional);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--verde-oscuro);
+    }
+
+    .btn-submit:active {
+      transform: scale(0.99);
+    }
+
+    .nota-ayuda {
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: #64748B;
+      text-align: center;
+    }
+
+    /* Responsivo para celulares */
+    @media (max-width: 600px) {
+      body { padding: 10px; }
+      .form-body { padding: 20px; }
+      .form-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Ocultar vista de oficio en pantalla */
+    .document-preview {
+      display: none;
+    }
+
+    /* --- ESTILOS DE IMPRESIÓN (OFICIO FORMAL) --- */
     @media print {
-      .form-container { display: none; }
-      .document-preview { 
-        display: block; 
-        font-size: 13pt; 
-        line-height: 1.8; 
-        max-width: 700px; 
-        margin: auto; 
+      @page {
+        size: letter;
+        margin: 2.5cm;
       }
-      .header-right { text-align: right; margin-bottom: 35px; }
-      .firma-box { margin-top: 100px; text-align: center; }
-      .firma-linea { border-top: 1px solid #000; width: 300px; margin: 0 auto 10px; }
+
+      body {
+        background: #FFFFFF;
+        padding: 0;
+        margin: 0;
+        color: #000000;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .form-wrapper {
+        display: none !important;
+      }
+
+      .document-preview {
+        display: block !important;
+        font-size: 12pt;
+        line-height: 1.75;
+      }
+
+      .doc-titulo {
+        text-align: center;
+        font-weight: bold;
+        font-size: 13pt;
+        letter-spacing: 0.5px;
+        margin-bottom: 30px;
+      }
+
+      .doc-fecha {
+        text-align: right;
+        margin-bottom: 35px;
+      }
+
+      .doc-destinatario {
+        font-weight: bold;
+        line-height: 1.45;
+        margin-bottom: 32px;
+      }
+
+      .doc-cuerpo {
+        text-align: justify;
+        margin-bottom: 22px;
+      }
+
+      .doc-solicitud {
+        text-align: justify;
+        margin-bottom: 24px;
+        white-space: pre-wrap;
+      }
+
+      .doc-despedida {
+        margin-bottom: 70px;
+      }
+
+      .doc-firma {
+        text-align: center;
+        page-break-inside: avoid;
+      }
+
+      .doc-firma-atentamente {
+        font-weight: bold;
+        margin-bottom: 65px;
+      }
+
+      .doc-firma-linea {
+        border-top: 1px solid #000000;
+        width: 320px;
+        margin: 0 auto 6px;
+      }
+
+      .doc-firma-nombre {
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .doc-firma-leyenda {
+        font-size: 10.5pt;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="form-container">
-    <h2>Llenar Oficio de Solicitud</h2>
-    <label>Nombre completo: <input type="text" id="nombre"></label><br><br>
-    <label>No. de cuenta: <input type="text" id="cuenta"></label><br><br>
-    <label>Licenciatura: <input type="text" id="licenciatura"></label><br><br>
-    <label>Semestre: <input type="text" id="semestre"></label>
-    <label>Grupo: <input type="text" id="grupo"></label>
-    <label>Turno: <input type="text" id="turno"></label><br><br>
-    <label>Trámite que requiere:</label><br>
-    <textarea id="tramite" rows="5" cols="60"></textarea><br><br>
-    <button onclick="generarOficio()">Generar e Imprimir Oficio</button>
-  </div>
-
-  <div id="oficio" class="document-preview">
-    <div style="text-align: center; font-weight: bold; margin-bottom: 25px;">
-      OFICIO DE SOLICITUD
+  <!-- VISTA EN PANTALLA (FORMULARIO) -->
+  <div class="form-wrapper">
+    <div class="form-header">
+      <h1>Oficio de Solicitud</h1>
+      <p>Centro Universitario UAEM Valle de Chalco</p>
     </div>
-    <div class="header-right" id="fecha-oficio"></div>
 
-    <p><strong>M. en S.F.C ELIA CHAMORRO VAZQUEZ</strong><br>
-    DIRECTORA DEL CENTRO UNIVERSITARIO VALLE DE CHALCO<br>
-    PRESENTE</p>
+    <form class="form-body" onsubmit="generarOficio(event)">
+      <div class="form-grid">
+        <div class="form-group full-width">
+          <label for="nombre">Nombre completo del alumno *</label>
+          <input type="text" id="nombre" placeholder="Ej. Juan Pérez López" required>
+        </div>
 
-    <p>
-      El que suscribe, <strong id="out-nombre"></strong>, con No. de cuenta <strong id="out-cuenta"></strong>, 
-      estudiante de la Licenciatura en <strong id="out-lic"></strong>, semestre <strong id="out-sem"></strong>, 
-      grupo <strong id="out-grupo"></strong>, turno <strong id="out-turno"></strong>.
-    </p>
-
-    <p>Solicito: <span id="out-tramite"></span></p>
-
-    <p>Sin otro particular, agradezco de antemano su fina atención.</p>
-
-    <div class="firma-box">
-      <p><strong>ATENTAMENTE</strong></p>
-      <div style="height: 60px;"></div>
-      <div class="firma-linea"></div>
-      <span id="out-firma"></span><br>
-      Nombre y Firma del Alumno
-    </div>
-  </div>
-
-  <script>
-    function generarOficio() {
-      const hoy = new Date();
-      const meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
-      
-      document.getElementById('fecha-oficio').innerText = 
-        `Valle de Chalco Solidaridad, Edo. de México, a ${hoy.getDate()} de ${meses[hoy.getMonth()]} de ${hoy.getFullYear()}`;
-      
-      const nombre = document.getElementById('nombre').value;
-      document.getElementById('out-nombre').innerText = nombre;
-      document.getElementById('out-firma').innerText = nombre;
-      document.getElementById('out-cuenta').innerText = document.getElementById('cuenta').value;
-      document.getElementById('out-lic').innerText = document.getElementById('licenciatura').value;
-      document.getElementById('out-sem').innerText = document.getElementById('semestre').value;
-      document.getElementById('out-grupo').innerText = document.getElementById('grupo').value;
-      document.getElementById('out-turno').innerText = document.getElementById('turno').value;
-      document.getElementById('out-tramite').innerText = document.getElementById('tramite').value;
-
-      window.print();
-    }
-  </script>
-</body>
-</html>
+        <div class="form-group">
+          <label for="cuenta">Número de cuenta *</label>
