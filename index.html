@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Oficio de Solicitud</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    .form-container { max-width: 650px; margin: auto; }
+    .document-preview { display: none; }
+
+    @media print {
+      .form-container { display: none; }
+      .document-preview { 
+        display: block; 
+        font-size: 13pt; 
+        line-height: 1.8; 
+        max-width: 700px; 
+        margin: auto; 
+      }
+      .header-right { text-align: right; margin-bottom: 35px; }
+      .firma-box { margin-top: 100px; text-align: center; }
+      .firma-linea { border-top: 1px solid #000; width: 300px; margin: 0 auto 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Llenar Oficio de Solicitud</h2>
+    <label>Nombre completo: <input type="text" id="nombre"></label><br><br>
+    <label>No. de cuenta: <input type="text" id="cuenta"></label><br><br>
+    <label>Licenciatura: <input type="text" id="licenciatura"></label><br><br>
+    <label>Semestre: <input type="text" id="semestre"></label>
+    <label>Grupo: <input type="text" id="grupo"></label>
+    <label>Turno: <input type="text" id="turno"></label><br><br>
+    <label>Trámite que requiere:</label><br>
+    <textarea id="tramite" rows="5" cols="60"></textarea><br><br>
+    <button onclick="generarOficio()">Generar e Imprimir Oficio</button>
+  </div>
+
+  <div id="oficio" class="document-preview">
+    <div style="text-align: center; font-weight: bold; margin-bottom: 25px;">
+      OFICIO DE SOLICITUD
+    </div>
+    <div class="header-right" id="fecha-oficio"></div>
+
+    <p><strong>M. en S.F.C ELIA CHAMORRO VAZQUEZ</strong><br>
+    DIRECTORA DEL CENTRO UNIVERSITARIO VALLE DE CHALCO<br>
+    PRESENTE</p>
+
+    <p>
+      El que suscribe, <strong id="out-nombre"></strong>, con No. de cuenta <strong id="out-cuenta"></strong>, 
+      estudiante de la Licenciatura en <strong id="out-lic"></strong>, semestre <strong id="out-sem"></strong>, 
+      grupo <strong id="out-grupo"></strong>, turno <strong id="out-turno"></strong>.
+    </p>
+
+    <p>Solicito: <span id="out-tramite"></span></p>
+
+    <p>Sin otro particular, agradezco de antemano su fina atención.</p>
+
+    <div class="firma-box">
+      <p><strong>ATENTAMENTE</strong></p>
+      <div style="height: 60px;"></div>
+      <div class="firma-linea"></div>
+      <span id="out-firma"></span><br>
+      Nombre y Firma del Alumno
+    </div>
+  </div>
+
+  <script>
+    function generarOficio() {
+      const hoy = new Date();
+      const meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+      
+      document.getElementById('fecha-oficio').innerText = 
+        `Valle de Chalco Solidaridad, Edo. de México, a ${hoy.getDate()} de ${meses[hoy.getMonth()]} de ${hoy.getFullYear()}`;
+      
+      const nombre = document.getElementById('nombre').value;
+      document.getElementById('out-nombre').innerText = nombre;
+      document.getElementById('out-firma').innerText = nombre;
+      document.getElementById('out-cuenta').innerText = document.getElementById('cuenta').value;
+      document.getElementById('out-lic').innerText = document.getElementById('licenciatura').value;
+      document.getElementById('out-sem').innerText = document.getElementById('semestre').value;
+      document.getElementById('out-grupo').innerText = document.getElementById('grupo').value;
+      document.getElementById('out-turno').innerText = document.getElementById('turno').value;
+      document.getElementById('out-tramite').innerText = document.getElementById('tramite').value;
+
+      window.print();
+    }
+  </script>
+</body>
+</html>
