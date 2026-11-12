@@ -266,6 +266,7 @@
           <label for="turno">Turno *</label>
           <select id="turno" required>
             <option value="" disabled selected>Selecciona tu turno</option>
+            <option value="Diurno">Diurno</option>
             <option value="Matutino">Matutino</option>
             <option value="Vespertino">Vespertino</option>
             <option value="Mixto">Mixto</option>
@@ -279,66 +280,4 @@
       </div>
 
       <button type="submit" class="btn-submit">Generar PDF / Imprimir Oficio</button>
-      <p class="nota-ayuda">Al pulsar el botón se abrirá la vista de impresión. Elige "Guardar como PDF" o selecciona tu impresora.</p>
-    </form>
-  </div>
-
-  <div class="document-preview">
-    <div class="doc-titulo">OFICIO DE SOLICITUD</div>
-    <div class="doc-fecha" id="fecha-oficio"></div>
-
-    <div class="doc-destinatario">
-      M. en S.F.C ELIA CHAMORRO VAZQUEZ<br>
-      DIRECTORA DEL CENTRO UNIVERSITARIO VALLE DE CHALCO<br>
-      P R E S E N T E
-    </div>
-
-    <div class="doc-cuerpo">
-      El que suscribe, <strong id="out-nombre"></strong>, con No. de cuenta <strong id="out-cuenta"></strong>, 
-      de la Licenciatura en <strong id="out-lic"></strong>, semestre <strong id="out-sem"></strong>, 
-      grupo <strong id="out-grupo"></strong>, turno <strong id="out-turno"></strong>.
-    </div>
-
-    <div class="doc-solicitud"><strong>Solicito:</strong> <span id="out-tramite"></span></div>
-
-    <div class="doc-despedida">
-      Sin otro particular, agradezco de antemano su fina atención.
-    </div>
-
-    <div class="doc-firma">
-      <div class="doc-firma-atentamente">ATENTAMENTE</div>
-      <div class="doc-firma-linea"></div>
-      <div class="doc-firma-nombre" id="out-firma"></div>
-      <div class="doc-firma-leyenda">Nombre y Firma del Alumno</div>
-    </div>
-  </div>
-
-  <script>
-    function generarOficio(event) {
-      event.preventDefault();
-
-      const hoy = new Date();
-      const meses = [
-        "enero", "febrero", "marzo", "abril", "mayo", "junio",
-        "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
-      ];
-
-      document.getElementById('fecha-oficio').innerText =
-        `Valle de Chalco Solidaridad, Edo. de México, a ${hoy.getDate()} de ${meses[hoy.getMonth()]} de ${hoy.getFullYear()}`;
-
-      const nombre = document.getElementById('nombre').value.trim();
-      document.getElementById('out-nombre').innerText = nombre;
-      document.getElementById('out-firma').innerText = nombre;
-      document.getElementById('out-cuenta').innerText = document.getElementById('cuenta').value.trim();
-      document.getElementById('out-lic').innerText = document.getElementById('licenciatura').value;
-      document.getElementById('out-sem').innerText = document.getElementById('semestre').value;
-      document.getElementById('out-grupo').innerText = document.getElementById('grupo').value.trim().toUpperCase();
-      document.getElementById('out-turno').innerText = document.getElementById('turno').value;
-      document.getElementById('out-tramite').innerText = document.getElementById('tramite').value.trim();
-
-      window.print();
-    }
-  </script>
-
-</body>
-</html>
+      <p class="nota-ayuda">Al pulsar el botón se abrirá la vista de impresión. Elige "Guardar como PDF" o selecciona tu impresora
